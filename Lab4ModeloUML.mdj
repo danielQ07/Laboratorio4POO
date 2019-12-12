@@ -498,6 +498,23 @@
 										},
 										{
 											"_type": "UMLOperationView",
+											"_id": "AAAAAAFu92bh6vn01zM=",
+											"_parent": {
+												"$ref": "AAAAAAFu9UZQUE37AMI="
+											},
+											"model": {
+												"$ref": "AAAAAAFu92beQPnxEdw="
+											},
+											"font": "Arial;13;0",
+											"left": 85,
+											"top": 369,
+											"width": 423,
+											"height": 13,
+											"text": "-validarTamanoMensaje(pMensaje: String): boolean",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
 											"_id": "AAAAAAFu9c1GRE83HZs=",
 											"_parent": {
 												"$ref": "AAAAAAFu9UZQUE37AMI="
@@ -507,7 +524,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 85,
-											"top": 369,
+											"top": 384,
 											"width": 423,
 											"height": 13,
 											"text": "+verMensajesRecibidos(): String",
@@ -524,7 +541,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 85,
-											"top": 384,
+											"top": 399,
 											"width": 423,
 											"height": 13,
 											"text": "+navegar(url: String): String",
@@ -541,7 +558,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 85,
-											"top": 399,
+											"top": 414,
 											"width": 423,
 											"height": 13,
 											"text": "+verCantidadChipsPrepago(): int",
@@ -558,7 +575,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 85,
-											"top": 414,
+											"top": 429,
 											"width": 423,
 											"height": 13,
 											"text": "+verActividadMesActual(): String",
@@ -575,7 +592,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 85,
-											"top": 429,
+											"top": 444,
 											"width": 423,
 											"height": 13,
 											"text": "+verActividadesNumMes(int pMes): String",
@@ -592,7 +609,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 85,
-											"top": 444,
+											"top": 459,
 											"width": 423,
 											"height": 13,
 											"text": "-validarSaldo(pMonto: int): boolean",
@@ -603,7 +620,7 @@
 									"left": 80,
 									"top": 199,
 									"width": 433,
-									"height": 263
+									"height": 278
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -2938,6 +2955,35 @@
 										"$ref": "AAAAAAFu9cqZe08iBQU="
 									},
 									"type": "String",
+									"direction": "return"
+								}
+							]
+						},
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAFu92beQPnxEdw=",
+							"_parent": {
+								"$ref": "AAAAAAFu9UZQS03yWWM="
+							},
+							"name": "validarTamanoMensaje",
+							"visibility": "private",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAFu92eSn/olnAY=",
+									"_parent": {
+										"$ref": "AAAAAAFu92beQPnxEdw="
+									},
+									"name": "pMensaje",
+									"type": "String"
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAFu92eSofomEWQ=",
+									"_parent": {
+										"$ref": "AAAAAAFu92beQPnxEdw="
+									},
+									"type": "boolean",
 									"direction": "return"
 								}
 							]
