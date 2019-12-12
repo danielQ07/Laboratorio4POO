@@ -9,5 +9,5 @@ comment3.target=void\ setFechaHora()
 comment4.params=
 comment4.target=java.lang.String\ getUrl()
 comment5.params=
-comment5.target=double\ getKyloBytes()
+comment5.target=double\ getKiloBytes()
 numComments=6

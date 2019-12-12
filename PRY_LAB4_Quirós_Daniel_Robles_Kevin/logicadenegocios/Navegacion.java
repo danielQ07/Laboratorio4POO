@@ -5,6 +5,7 @@
  * @version (a version number or a date)
  */
 package logicadenegocios;
+
 import java.util.Date;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
@@ -17,17 +18,15 @@ public class Navegacion{
   
   public Navegacion(String pUrl){
     url = pUrl;
-    double pKyloBytes = (1.0 + Math.random()*(1.0 - 8.0));
-    kiloBytes = pKyloBytes;
+    double pKiloBytes = (1.0 + Math.random()*(1.0 - 8.0));
+    kiloBytes = pKiloBytes;
     setFechaHora();
   }
     
-  
   public String getFechaHora(){
     SimpleDateFormat mascara = new SimpleDateFormat("dd/MM/yy");
     return mascara.format(fechaHora);
   }
-  
   
   private void setFechaHora(){
     Calendar calendario;
@@ -35,13 +34,11 @@ public class Navegacion{
     fechaHora = calendario.getTime();
   }
   
-  
   public String getUrl(){
     return url;
   }
   
-  
-  public double getKyloBytes(){
+  public double getKiloBytes(){
     return kiloBytes;
   }
 }

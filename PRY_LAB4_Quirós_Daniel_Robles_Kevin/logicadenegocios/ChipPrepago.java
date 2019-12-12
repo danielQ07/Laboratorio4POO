@@ -1,5 +1,9 @@
 package logicadenegocios;
 
+import logicadenegocios.Llamada;
+import logicadenegocios.Mensaje;
+import logicadenegocios.Navegacion;
+
 public class ChipPrepago{
   private String codigoPais;
   private String dueno;
@@ -11,9 +15,9 @@ public class ChipPrepago{
   private int indiceLlamadas = 0;
   private int indiceMensajes = 0;
   private int cantidadSalvame = 0;
-  private String[] historialLlamadas; //cambiar por objeto
-  private String[] historialMensajes; //cambiar por objeto
-  private String[] historialNavegaciones; //cambiar por objeto
+  private Llamada[] historialLlamadas; //cambiar por objeto
+  private Mensaje[] historialMensajes; //cambiar por objeto
+  private Navegacion[] historialNavegaciones; //cambiar por objeto
   
   public ChipPrepago(){
    this.cantidadChipPrepago += 1;
@@ -42,9 +46,9 @@ public class ChipPrepago{
       this.dueno = pDueno;
       this.megaBytes = pMegaBytes;
       this.saldo = 1000;
-      this.historialLlamadas = new String[10];
-      this.historialMensajes = new String[10];
-      this.historialNavegaciones = new String[10];
+      this.historialLlamadas = new Llamada[10];
+      this.historialMensajes = new Mensaje[10];
+      this.historialNavegaciones = new Navegacion[10];
       this.isActivado = true;
       return (mensaje = "El chip ha sido activado");
     }
@@ -52,6 +56,10 @@ public class ChipPrepago{
   
   public String consultarSaldo(){
     return String.valueOf(this.saldo);
+  } 
+  
+  private void setSaldo(int pSaldo){
+    this.saldo = pSaldo;
   }
   
   public String consultarHistorial(){
@@ -95,7 +103,7 @@ public class ChipPrepago{
     String infoMensaje="";
     if(pChipDestinatario.getCodigoPais() == "506"){
       precioTotal = pMinutos * 30;
-      if(this.saldo-precioTotal > 0){
+      if(this.saldo-precioTotal < 0){
         return(infoMensaje += "No cuenta con saldo suficiente para realizar una llamda nacional, con esta" 
             + "duración");    
       }else{
@@ -124,7 +132,8 @@ public class ChipPrepago{
             + "duración");    
       }else{
         this.saldo -= pMinutos;
-        return(infoMensaje = "La llamada se h realizadon con éxito su saldo restante es" + String.valueOf(this.saldo));
+        return(infoMensaje = "La llamada se h realizadon con éxito su saldo restante es" 
+            + String.valueOf(this.saldo));
       }
     }
   }
@@ -134,12 +143,12 @@ public class ChipPrepago{
     if(this.historialLlamadas.length > 0){
       byte contadorLlamadas = 0;
       while(contadorLlamadas > 10){
-        //llamar métodos para sacar info
+        //llamar métodos para sacar info de cada registro
         llamadasTxt += "Número de llamada " + String.valueOf(contadorLlamadas+1) + "\n";
-        llamadasTxt += "Tipo de llamada " + String.valueOf(this.historialLlamadas) + "\n";
-        llamadasTxt += "Duración de llamada " + String.valueOf(this.historialLlamadas) + "\n";
-        llamadasTxt += "Destinatario " + String.valueOf(this.historialLlamadas) + "\n";
-        llamadasTxt += "Fecha y Hora " + String.valueOf(this.historialLlamadas) + "\n\n";
+        llamadasTxt += "Tipo de llamada " + this.historialLlamadas[contadorLlamadas].getTipoLlamada() + "\n";
+        llamadasTxt += "Duración de llamada " + this.historialLlamadas[contadorLlamadas].getMinutos() + "\n";
+        llamadasTxt += "Destinatario " + this.historialLlamadas[contadorLlamadas].getDestinatario() + "\n";
+        llamadasTxt += "Fecha y Hora " + this.historialLlamadas[contadorLlamadas].getFechaHora() + "\n\n";
         contadorLlamadas += 1;
       }
       return llamadasTxt;
@@ -155,10 +164,10 @@ public class ChipPrepago{
       while(contadorMensajes > 10){
         //llamar métodos para sacar info
         mensajesTxt += "Número de mensaje " + String.valueOf(contadorMensajes+1) + "\n";
-        mensajesTxt += "Tipo de mensaje " + String.valueOf(this.historialLlamadas) + "\n";
-        mensajesTxt += "Mensaje" + String.valueOf(this.historialLlamadas) + "\n";
-        mensajesTxt += "Destinatario " + String.valueOf(this.historialLlamadas) + "\n";
-        mensajesTxt += "Fecha y Hora " + String.valueOf(this.historialLlamadas) + "\n\n";
+        mensajesTxt += "Tipo de mensaje " + this.historialMensajes[contadorMensajes].getTipoMensaje() + "\n";
+        mensajesTxt += "Mensaje" + this.historialMensajes[contadorMensajes].getMensaje() + "\n";
+        mensajesTxt += "Destinatario " + this.historialMensajes[contadorMensajes].getDestinatario() + "\n";
+        mensajesTxt += "Fecha y Hora " + this.historialMensajes[contadorMensajes].getFechaHora() + "\n\n";
         contadorMensajes += 1;
       }
       return mensajesTxt;
@@ -174,13 +183,29 @@ public class ChipPrepago{
       while(contadorNavegaciones > 10){
         //llamar métodos para sacar info
         navegacionesTxt += "Número de navegación " + String.valueOf(contadorNavegaciones+1) + "\n";
-        navegacionesTxt += "KiloBytes " + String.valueOf(this.historialLlamadas) + "\n";
-        navegacionesTxt += "Fecha y Hora " + String.valueOf(this.historialLlamadas) + "\n\n";
+        navegacionesTxt += "KiloBytes " + this.historialNavegaciones[contadorNavegaciones].getKiloBytes() + "\n";
+        navegacionesTxt += "Fecha y Hora " + this.historialMensajes[contadorNavegaciones].getFechaHora() + "\n\n";
         contadorNavegaciones += 1;
       }
       return navegacionesTxt;
     }else{
       return (navegacionesTxt += "No posee mensajes en el historial");
     }
+  }
+  
+  public String tranferir(int pMonto, ChipPrepago pChipDestinatario){
+    String infoTxt="";
+    if(this.saldo-(pMonto+5) < 0){
+      return (infoTxt = "No posee con el saldo suficiente");
+    }else{
+      this.saldo -= (pMonto+5);
+      pChipDestinatario.setSaldo(Integer.parseInt(pChipDestinatario.consultarSaldo())+pMonto);
+      return (infoTxt = "Se ha transferido" + String.valueOf(pMonto) +", su salgo actual es "
+          + this.consultarSaldo());
+    }
+  }
+  
+  public String enviarSms(){
+    return "";  
   }
 }
