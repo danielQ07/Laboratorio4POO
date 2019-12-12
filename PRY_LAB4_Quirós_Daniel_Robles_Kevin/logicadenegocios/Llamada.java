@@ -24,7 +24,11 @@ public class Llamada{
     tipoLlamada = pTipoLlamada;
   }
    
-  public String getFechaHora(){
+  public Date getFechaHora(){
+    return fechaHora;
+  }
+  
+  public String getFechaHoraTxt(){
     SimpleDateFormat mascara = new SimpleDateFormat("dd/MM/yy");
     return mascara.format(fechaHora);
   }

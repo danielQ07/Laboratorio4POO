@@ -1,5 +1,6 @@
 package logicadenegocios;
 
+import java.util.Date;
 import logicadenegocios.Llamada;
 import logicadenegocios.Mensaje;
 import logicadenegocios.Navegacion;
@@ -15,9 +16,9 @@ public class ChipPrepago{
   private int indiceLlamadas = 0;
   private int indiceMensajes = 0;
   private int cantidadSalvame = 0;
-  private Llamada[] historialLlamadas; //cambiar por objeto
-  private Mensaje[] historialMensajes; //cambiar por objeto
-  private Navegacion[] historialNavegaciones; //cambiar por objeto
+  private Llamada[] historialLlamadas; 
+  private Mensaje[] historialMensajes; 
+  private Navegacion[] historialNavegaciones; 
   
   public ChipPrepago(){
    this.cantidadChipPrepago += 1;
@@ -34,7 +35,7 @@ public class ChipPrepago{
     return this.numeroChip;
   }
   
-    public String getCodigoPais(){
+  public String getCodigoPais(){
     return this.codigoPais;
   }
   
@@ -103,7 +104,7 @@ public class ChipPrepago{
     String infoMensaje="";
     if(pChipDestinatario.getCodigoPais() == "506"){
       precioTotal = pMinutos * 30;
-      if(this.saldo-precioTotal < 0){
+      if(validarSaldo(precioTotal)){
         return(infoMensaje += "No cuenta con saldo suficiente para realizar una llamda nacional, con esta" 
             + "duración");    
       }else{
@@ -127,7 +128,7 @@ public class ChipPrepago{
         default:
           return (infoMensaje = "País no válido");
       }
-      if(this.saldo-precioTotal > 0){
+      if(validarSaldo(precioTotal)){
         return(infoMensaje += "No cuenta con saldo suficiente para realizar una llamada internacional, con esta" 
             + "duración");    
       }else{
@@ -148,7 +149,7 @@ public class ChipPrepago{
         llamadasTxt += "Tipo de llamada " + this.historialLlamadas[contadorLlamadas].getTipoLlamada() + "\n";
         llamadasTxt += "Duración de llamada " + this.historialLlamadas[contadorLlamadas].getMinutos() + "\n";
         llamadasTxt += "Destinatario " + this.historialLlamadas[contadorLlamadas].getDestinatario() + "\n";
-        llamadasTxt += "Fecha y Hora " + this.historialLlamadas[contadorLlamadas].getFechaHora() + "\n\n";
+        llamadasTxt += "Fecha y Hora " + this.historialLlamadas[contadorLlamadas].getFechaHoraTxt() + "\n\n";
         contadorLlamadas += 1;
       }
       return llamadasTxt;
@@ -167,7 +168,7 @@ public class ChipPrepago{
         mensajesTxt += "Tipo de mensaje " + this.historialMensajes[contadorMensajes].getTipoMensaje() + "\n";
         mensajesTxt += "Mensaje" + this.historialMensajes[contadorMensajes].getMensaje() + "\n";
         mensajesTxt += "Destinatario " + this.historialMensajes[contadorMensajes].getDestinatario() + "\n";
-        mensajesTxt += "Fecha y Hora " + this.historialMensajes[contadorMensajes].getFechaHora() + "\n\n";
+        mensajesTxt += "Fecha y Hora " + this.historialMensajes[contadorMensajes].getFechaHoraTxt() + "\n\n";
         contadorMensajes += 1;
       }
       return mensajesTxt;
@@ -184,7 +185,7 @@ public class ChipPrepago{
         //llamar métodos para sacar info
         navegacionesTxt += "Número de navegación " + String.valueOf(contadorNavegaciones+1) + "\n";
         navegacionesTxt += "KiloBytes " + this.historialNavegaciones[contadorNavegaciones].getKiloBytes() + "\n";
-        navegacionesTxt += "Fecha y Hora " + this.historialMensajes[contadorNavegaciones].getFechaHora() + "\n\n";
+        navegacionesTxt += "Fecha y Hora " + this.historialMensajes[contadorNavegaciones].getFechaHoraTxt() + "\n\n";
         contadorNavegaciones += 1;
       }
       return navegacionesTxt;
@@ -228,7 +229,7 @@ public class ChipPrepago{
         default:
           return (infoTxt = "País no válido");
       }
-      if(this.saldo-costoMensaje < 0){
+      if(validarSaldo(costoMensaje)){
         return ( infoTxt= "No posee suficiente saldo para enviar el mensaje");
       }else{
         Mensaje nuevoMensajeEmisor = new Mensaje(pMensaje, pChipDestinatario.getNumeroChip(), "Enviado");
@@ -262,6 +263,84 @@ public class ChipPrepago{
   private boolean validarTamanoMensaje(String pMensaje){
     if(pMensaje.length() > 128){
       return false;
+    }else{
+      return true;
+    }
+  }
+  
+  public String verMensajesRecibidos(){
+    String infoTxt = "";
+    if(this.historialMensajes.length == 0){
+      return (infoTxt = "El chip no posee mensajes");
+    }
+    int contadorMensajes = 0;
+    while(this.historialMensajes.length > contadorMensajes){
+      if(this.historialMensajes[contadorMensajes].getTipoMensaje() == "Recibido"){
+        infoTxt += "Mensaje "+ this.historialMensajes[contadorMensajes].getMensaje() + "\n";
+        infoTxt += "Fecha y Hora "+ this.historialMensajes[contadorMensajes].getFechaHora() + "\n\n";
+      }
+      contadorMensajes += 1;
+    }
+    if(infoTxt.equals("")){
+      return (infoTxt = "No cuenta con mensajes recibidos");
+    }
+    else{
+      return "Los mensajes son los siguientes: \n" + infoTxt;
+    }
+  }
+  
+  public String navegar(){
+    return "";  
+  }
+  
+  public int verCantidadChipsPregago(){
+    return this.cantidadChipPrepago;
+  }
+  
+  public String verActividadesMesActual(){
+    String infoTxt = "Llamadas:\n";
+    infoTxt += consultarLlamadas();
+    infoTxt += "Mensajes:\n";
+    infoTxt += consultarMensajes();
+    return infoTxt;
+  }
+  
+  public String verActividadesNumMes(int pMes){
+    if(pMes > 0 && pMes < 13){
+      String infoTxt = "Llamadas:\n";
+      byte contadorLlamadas = 0;
+      while(this.historialLlamadas.length > contadorLlamadas){
+        if(this.historialLlamadas[contadorLlamadas].getFechaHora().getMonth() == pMes){
+          infoTxt += "Número de llamada " + String.valueOf(contadorLlamadas+1) + "\n";
+          infoTxt += "Tipo de llamada " + this.historialLlamadas[contadorLlamadas].getTipoLlamada() + "\n";
+          infoTxt += "Duración de llamada " + this.historialLlamadas[contadorLlamadas].getMinutos() + "\n";
+          infoTxt += "Destinatario " + this.historialLlamadas[contadorLlamadas].getDestinatario() + "\n";
+          infoTxt += "Fecha y Hora " + this.historialLlamadas[contadorLlamadas].getFechaHoraTxt() + "\n\n";
+        }
+        contadorLlamadas += 1;
+      }
+      infoTxt += "Mensajes:\n";
+      byte contadorMensajes = 0;
+      while(this.historialMensajes.length > contadorMensajes){
+        if(this.historialMensajes[contadorMensajes].getFechaHora().getMonth() == pMes){
+          infoTxt += "Número de mensaje " + String.valueOf(contadorMensajes+1) + "\n";
+          infoTxt += "Tipo de mensaje " + this.historialMensajes[contadorMensajes].getTipoMensaje() + "\n";
+          infoTxt += "Mensaje" + this.historialMensajes[contadorMensajes].getMensaje() + "\n";
+          infoTxt += "Destinatario " + this.historialMensajes[contadorMensajes].getDestinatario() + "\n";
+          infoTxt += "Fecha y Hora " + this.historialMensajes[contadorMensajes].getFechaHoraTxt() + "\n\n";
+        }
+        contadorMensajes += 1;
+      }
+
+      return infoTxt;
+    }else{
+      return "Mes no válido";
+    }
+  }
+  
+  private boolean validarSaldo(int pSaldo){
+    if(this.saldo-pSaldo < 0){
+     return false;
     }else{
       return true;
     }
