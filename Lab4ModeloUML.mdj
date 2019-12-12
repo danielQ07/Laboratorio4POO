@@ -928,7 +928,7 @@
 											"top": 175,
 											"width": 334.1787109375,
 											"height": 13,
-											"text": "+setFechaHora(): void",
+											"text": "-setFechaHora(): void",
 											"horizontalAlignment": 0
 										}
 									],
@@ -1210,7 +1210,7 @@
 											"top": 361,
 											"width": 327,
 											"height": 13,
-											"text": "+setFechaHora(): void",
+											"text": "-setFechaHora(): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1244,7 +1244,7 @@
 											"top": 391,
 											"width": 327,
 											"height": 13,
-											"text": "+getMinutos(): String",
+											"text": "+getMinutos(): int",
 											"horizontalAlignment": 0
 										}
 									],
@@ -1441,7 +1441,7 @@
 											"top": 517,
 											"width": 319,
 											"height": 13,
-											"text": "-kilobytes: double",
+											"text": "-kiloBytes: double",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1492,7 +1492,7 @@
 											"top": 555,
 											"width": 319,
 											"height": 13,
-											"text": "+Navegacion(pUrl: String, pKiloBytes: double)",
+											"text": "+Navegacion(pUrl: String)",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1526,7 +1526,7 @@
 											"top": 585,
 											"width": 319,
 											"height": 13,
-											"text": "+setFechaHora(): void",
+											"text": "-setFechaHora(): void",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2935,7 +2935,8 @@
 									"_parent": {
 										"$ref": "AAAAAAFu9cqZe08iBQU="
 									},
-									"name": "pMensaje String"
+									"name": "pMensaje String",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -3296,6 +3297,7 @@
 								"$ref": "AAAAAAFu9eIEdE/QnnY="
 							},
 							"name": "setFechaHora",
+							"visibility": "private",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -3404,6 +3406,7 @@
 								"$ref": "AAAAAAFu9eIkAU/6di8="
 							},
 							"name": "setFechaHora",
+							"visibility": "private",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -3449,7 +3452,7 @@
 									"_parent": {
 										"$ref": "AAAAAAFu9e7yfVFdjxA="
 									},
-									"type": "String",
+									"type": "int",
 									"direction": "return"
 								}
 							]
@@ -3480,7 +3483,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFu9ePORlB7MOM="
 							},
-							"name": "kilobytes",
+							"name": "kiloBytes",
 							"visibility": "private",
 							"type": "double"
 						},
@@ -3512,15 +3515,6 @@
 									},
 									"name": "pUrl",
 									"type": "String"
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFu9fHsc1GXZiA=",
-									"_parent": {
-										"$ref": "AAAAAAFu9e/tbFF3r2o="
-									},
-									"name": "pKiloBytes",
-									"type": "double"
 								}
 							]
 						},
@@ -3550,6 +3544,7 @@
 								"$ref": "AAAAAAFu9ePORlB7MOM="
 							},
 							"name": "setFechaHora",
+							"visibility": "private",
 							"parameters": [
 								{
 									"_type": "UMLParameter",

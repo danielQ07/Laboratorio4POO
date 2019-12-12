@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Llamada
+comment1.params=pMinutos\ pNumeroDestinatario
+comment1.target=Llamada(int,\ java.lang.String)
+comment2.params=
+comment2.target=java.lang.String\ getFechaHora()
+comment3.params=
+comment3.target=void\ setFechaHora()
+comment4.params=
+comment4.target=java.lang.String\ getDestinatario()
+comment5.params=
+comment5.target=int\ getMinutos()
+numComments=6
