@@ -205,7 +205,65 @@ public class ChipPrepago{
     }
   }
   
-  public String enviarSms(){
-    return "";  
+  public String enviarSms(String pMensaje, ChipPrepago pChipDestinatario){
+    String infoTxt="";
+    if(validarTamanoMensaje(pMensaje)){
+      int costoMensaje=0;
+      switch(pChipDestinatario.getCodigoPais()){
+        case "506":
+          costoMensaje = 20;
+          break;
+        case "1":
+          costoMensaje = 30;
+          break;
+        case "508":
+          costoMensaje = 40;
+          break;
+        case "610":
+          costoMensaje = 50;
+          break;
+        case "201":
+          costoMensaje = 60;
+          break;
+        default:
+          return (infoTxt = "País no válido");
+      }
+      if(this.saldo-costoMensaje < 0){
+        return ( infoTxt= "No posee suficiente saldo para enviar el mensaje");
+      }else{
+        Mensaje nuevoMensajeEmisor = new Mensaje(pMensaje, pChipDestinatario.getNumeroChip(), "Enviado");
+        Mensaje nuevoMensajeReceptor = new Mensaje(pMensaje, pChipDestinatario.getNumeroChip(), "Recibido");
+        this.saldo -= costoMensaje;
+        //Agrega el mensaje al historial del emisor
+        if(this.indiceMensajes+1 == 10){
+          this.indiceMensajes = 0;
+          this.historialMensajes[this.indiceMensajes] = nuevoMensajeEmisor;
+          this.indiceMensajes += 1;
+        }else{
+          this.historialMensajes[this.indiceMensajes] = nuevoMensajeEmisor;
+          this.indiceMensajes += 1;
+        }
+        //Agrega el mensaje al historial del receptor
+        if(this.indiceMensajes+1 == 10){
+          this.indiceMensajes = 0;
+          this.historialMensajes[this.indiceMensajes] = nuevoMensajeReceptor;
+          this.indiceMensajes += 1;
+        }else{
+          this.historialMensajes[this.indiceMensajes] = nuevoMensajeReceptor;
+          this.indiceMensajes += 1;
+        }
+        return (infoTxt = "Se ha enviado el mensaje con éxito");
+      }
+    }else{
+      return (infoTxt = "El tamaño del mensaje debe ser menor a 128 caracteres");
+    }
+  }
+  
+  private boolean validarTamanoMensaje(String pMensaje){
+    if(pMensaje.length() > 128){
+      return false;
+    }else{
+      return true;
+    }
   }
 }
