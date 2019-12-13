@@ -73,7 +73,7 @@ public class ChipPrepago{
   
   public String recargar(int pMonto){
     String mensaje="";
-    if(pMonto > 0){
+    if(pMonto < 0){
       return(mensaje += "El monto no puede ser negativo");
     }else if(pMonto == 0){
       return(mensaje += "El monto no puede ser 0");
@@ -141,9 +141,9 @@ public class ChipPrepago{
   
   public String consultarLlamadas(){
     String llamadasTxt = "";
-    if(this.historialLlamadas.length > 0){
-      byte contadorLlamadas = 0;
-      while(contadorLlamadas > 10){
+    if(this.historialLlamadas[0] != null){
+      int contadorLlamadas = 0;
+      while(contadorLlamadas < 10 && this.historialLlamadas[contadorLlamadas] != null){
         //llamar métodos para sacar info de cada registro
         llamadasTxt += "Número de llamada " + String.valueOf(contadorLlamadas+1) + "\n";
         llamadasTxt += "Tipo de llamada " + this.historialLlamadas[contadorLlamadas].getTipoLlamada() + "\n";
@@ -160,9 +160,9 @@ public class ChipPrepago{
   
   public String consultarMensajes(){
     String mensajesTxt = "";
-    if(this.historialMensajes.length > 0){
-      byte contadorMensajes = 0;
-      while(contadorMensajes > 10){
+    if(this.historialMensajes[0] != null){
+      int contadorMensajes = 0;
+      while(contadorMensajes < 10 && this.historialMensajes[contadorMensajes] != null){
         //llamar métodos para sacar info
         mensajesTxt += "Número de mensaje " + String.valueOf(contadorMensajes+1) + "\n";
         mensajesTxt += "Tipo de mensaje " + this.historialMensajes[contadorMensajes].getTipoMensaje() + "\n";
@@ -179,9 +179,9 @@ public class ChipPrepago{
   
   public String consultarNavegaciones(){
     String navegacionesTxt = "";
-    if(this.historialNavegaciones.length > 0){
-      byte contadorNavegaciones = 0;
-      while(contadorNavegaciones > 10){
+    if(this.historialNavegaciones[0] != null){
+      int contadorNavegaciones = 0;
+      while(contadorNavegaciones < 10 && this.historialNavegaciones[contadorNavegaciones] != null){
         //llamar métodos para sacar info
         navegacionesTxt += "Número de navegación " + String.valueOf(contadorNavegaciones+1) + "\n";
         navegacionesTxt += "KiloBytes " + this.historialNavegaciones[contadorNavegaciones].getKiloBytes() + "\n";
@@ -229,7 +229,7 @@ public class ChipPrepago{
         default:
           return (infoTxt = "País no válido");
       }
-      if(validarSaldo(costoMensaje)){
+      if(validarSaldo(costoMensaje) ==  false){
         return ( infoTxt= "No posee suficiente saldo para enviar el mensaje");
       }else{
         Mensaje nuevoMensajeEmisor = new Mensaje(pMensaje, pChipDestinatario.getNumeroChip(), "Enviado");
@@ -245,13 +245,13 @@ public class ChipPrepago{
           this.indiceMensajes += 1;
         }
         //Agrega el mensaje al historial del receptor
-        if(this.indiceMensajes+1 == 10){
-          this.indiceMensajes = 0;
-          this.historialMensajes[this.indiceMensajes] = nuevoMensajeReceptor;
-          this.indiceMensajes += 1;
+        if(pChipDestinatario.indiceMensajes+1 == 10){
+          pChipDestinatario.indiceMensajes = 0;
+          pChipDestinatario.historialMensajes[pChipDestinatario.indiceMensajes] = nuevoMensajeReceptor;
+          pChipDestinatario.indiceMensajes += 1;
         }else{
-          this.historialMensajes[this.indiceMensajes] = nuevoMensajeReceptor;
-          this.indiceMensajes += 1;
+          pChipDestinatario.historialMensajes[pChipDestinatario.indiceMensajes] = nuevoMensajeReceptor;
+          pChipDestinatario.indiceMensajes += 1;
         }
         return (infoTxt = "Se ha enviado el mensaje con éxito");
       }
