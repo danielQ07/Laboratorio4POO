@@ -223,10 +223,10 @@ public class ChipPrepago{
     }else if(pChipDestinatario.isActivado == false){
       return "Chip de destino no ha sido activado";
     }else if(validarSaldo(pMonto+5) == false){
-      return "No posee con el saldo suficiente";
+      return "No posee el saldo suficiente";
     }else{
       this.saldo -= (pMonto+5);
-      pChipDestinatario.setSaldo(Integer.parseInt(pChipDestinatario.consultarSaldo())+pMonto);
+      pChipDestinatario.setSaldo(Integer.parseInt(pChipDestinatario.getSaldo())+pMonto);
       return "Se ha transferido " + String.valueOf(pMonto) +", su salgo actual es "
           + this.consultarSaldo();
     }
@@ -366,7 +366,7 @@ public class ChipPrepago{
    * @return saldo disponible al momento
    */
   public String consultarSaldo(){
-    return String.valueOf(this.saldo);
+    return "El saldo actual es "+this.saldo;
   } 
   
   
@@ -461,6 +461,10 @@ public class ChipPrepago{
   
   private String getMegaBytesTxt(){
     return String.valueOf(this.megaBytes);
+  }
+  
+  private String getSaldo(){
+    return String.valueOf(this.saldo);
   }
   
 
