@@ -2,6 +2,7 @@
 comment0.target=Llamada
 comment1.params=pMinutos\ pNumeroDestinatario\ pTipoLlamada
 comment1.target=Llamada(int,\ java.lang.String,\ java.lang.String)
+comment1.text=\r\n\ \ Metodo\ constructor\ de\ objetos\ tipo\ Llamada\r\n\ \r\n\ @param\ pMinutos\ numero\ de\ minutos\ en\ llamada,pNumeroDestinario\ numero\ de\ chip\ de\ destinario,\r\n\ \ \ \ \ pTipoLlamada\ si\ es\ enviada\ o\ recibida\r\n
 comment2.params=
 comment2.target=java.lang.String\ getFechaHora()
 comment3.params=

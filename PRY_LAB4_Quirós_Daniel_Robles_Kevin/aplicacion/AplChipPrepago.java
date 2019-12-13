@@ -1,8 +1,8 @@
 /**
- * Write a description of class AplChipPrepago here.
+ * Pequeña clase tipo main, donde se pueden encontrar las pruebas 
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Kevin Robles, Daniel Quiros
+ * @version 1.0
  */
 package aplicacion;
 import logicadenegocios.ChipPrepago;

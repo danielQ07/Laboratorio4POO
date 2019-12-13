@@ -1,8 +1,8 @@
 /**
- * Write a description of class Llamada here.
+ * Clase para crear objetos tipo Llamada
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Kevin Robles, Daniel Quiros
+ * @version 1.0
  */
 package logicadenegocios;
 
@@ -17,6 +17,12 @@ public class Llamada{
   private Date fechaHora;
   private String tipoLlamada;
   
+  /**
+   *  Metodo constructor de objetos tipo Llamada
+   * 
+   * @param pMinutos numero de minutos en llamada,pNumeroDestinario numero de chip de destinario,
+   *     pTipoLlamada si es enviada o recibida
+   */
   public Llamada(int pMinutos, String pNumeroDestinatario, String pTipoLlamada){
     minutos = pMinutos;
     numeroDestinatario = pNumeroDestinatario;

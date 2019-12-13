@@ -2,6 +2,7 @@
 comment0.target=Mensaje
 comment1.params=pMensaje\ pNumeroDestinatario\ pTipoMensaje
 comment1.target=Mensaje(java.lang.String,\ java.lang.String,\ java.lang.String)
+comment1.text=\r\n\ \ Metodo\ constructor\ de\ objetos\ tipo\ Mensaje\r\n\ \r\n\ @param\ pMensaje\ texto\ del\ mensaje\ a\ enviar,\ pNumeroDestinario\ numero\ de\ chip\ del\ destinario,\r\n\ \ \ \ \ pTipoMensaje\ si\ es\ enviado\ o\ recibido\r\n
 comment2.params=
 comment2.target=java.lang.String\ getMensaje()
 comment3.params=

@@ -1,8 +1,8 @@
 /**
- * Write a description of class Llamada here.
+ * Clase para crear objetos tipo Mensaje
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Kevin Robles, Daniel Quiros
+ * @version 1.0
  */
 package logicadenegocios;
 
@@ -17,6 +17,12 @@ public class Mensaje{
   private Date fechaHora;
   private String tipoMensaje;
   
+  /**
+   *  Metodo constructor de objetos tipo Mensaje
+   * 
+   * @param pMensaje texto del mensaje a enviar, pNumeroDestinario numero de chip del destinario,
+   *     pTipoMensaje si es enviado o recibido
+   */
   public Mensaje(String pMensaje, String pNumeroDestinatario, String pTipoMensaje){
     mensaje = pMensaje;
     numeroDestinatario = pNumeroDestinatario;

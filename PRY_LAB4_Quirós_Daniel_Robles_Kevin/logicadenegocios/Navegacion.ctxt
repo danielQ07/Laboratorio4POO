@@ -2,6 +2,7 @@
 comment0.target=Navegacion
 comment1.params=pUrl
 comment1.target=Navegacion(java.lang.String)
+comment1.text=\r\n\ \ Metodo\ constructor\ de\ objetos\ tipo\ Navegacion\r\n\ \r\n\ @param\ pUrl\ direccion\ web\ de\ la\ pagina\ navegada\r\n\ \r\n
 comment2.params=
 comment2.target=java.lang.String\ getFechaHora()
 comment3.params=

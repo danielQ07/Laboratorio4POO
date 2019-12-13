@@ -1,5 +1,10 @@
+/**
+ * Clase para crear objetos tipo ChipPrepago con sus diferentes comportamientos
+ *
+ * @author Kevin Robles, Daniel Quiros
+ * @version 1.0
+ */
 package logicadenegocios;
-
 import java.util.Date;
 import logicadenegocios.Llamada;
 import logicadenegocios.Mensaje;
@@ -22,6 +27,10 @@ public class ChipPrepago{
   private Mensaje[] historialMensajes; 
   private Navegacion[] historialNavegaciones; 
   
+  /**
+   *  Metodo constructor de objetos tipo chipPrepago vacio
+   * 
+   */
   public ChipPrepago(){
    this.cantidadChipPrepago += 1;
    this.codigoPais = "506";
@@ -29,6 +38,11 @@ public class ChipPrepago{
   }
   
   
+  /**
+   * Metodo constructor de objetos tipo ChipPrepago con codigo pais
+   * 
+   * @param pCodigoPais codigo de pais para nuevo chipPrepago
+   */
   public ChipPrepago(String pCodigoPais){
     this.cantidadChipPrepago += 1;
     this.codigoPais = pCodigoPais;
@@ -36,6 +50,12 @@ public class ChipPrepago{
   }
   
   
+  /**
+   * Metodo para activar un chip
+   * 
+   * @param pDueno nombre del propietario, pMegaBytes numero de megaBytes inicial
+   * @return mensaje de exito o fallo
+   */
   public String activar(String pDueno, double pMegaBytes){
     if(this.isActivado==true){
       return "El chip ya ha sido activado";
@@ -52,6 +72,13 @@ public class ChipPrepago{
   }
   
   
+  /**
+   * Metodo para realizar una llamada
+   * 
+   * @param pMinutos numero de minutos de llamada, pChipDestinario chipPrepago al que se
+   *     le realiza la llamada
+   * @return mensaje de exito con nuevo saldo o de fallo
+   */
   public String llamar(int pMinutos, ChipPrepago pChipDestinatario){
     if(this.isActivado == false){
       return "Chip no ha sido activado";
@@ -82,6 +109,12 @@ public class ChipPrepago{
   }
   
   
+  /**
+   * Metodo para enviar un mensaje de texto
+   * 
+   * @param pMensaje texto del mensaje, pChipPrepago chipPrepago al que se le envia el mensaje
+   * @return mensaje de exito o fallo
+   */
   public String enviarSms(String pMensaje, ChipPrepago pChipDestinatario){
     if(this.isActivado == false){
       return "Chip no ha sido activado";
@@ -112,6 +145,12 @@ public class ChipPrepago{
   }
   
   
+  /**
+   * Metodo para realizar una navegacion web
+   * 
+   * @param pUrl pagina web navegada
+   * @return mensaje de exito con nueva cantidad de megaBytes disponible o de fallo
+   */
   public String navegar(String pUrl){
     String infoTxt="";
     Navegacion nuevaNavegacion = new Navegacion(pUrl);
@@ -128,6 +167,12 @@ public class ChipPrepago{
   }
   
   
+  /**
+   * Metodo para transferir saldo a otro chipPrepago
+   * 
+   * @param pMonto cantidad a transferir, pChipPrepago chipPrepago al que se le envia el monto
+   * @return mensaje de exito con nuevo saldo o de fallo
+   */
   public String transferir(int pMonto, ChipPrepago pChipDestinatario){
     if(this.isActivado == false){
       return "Chip no ha sido activado";
@@ -144,6 +189,12 @@ public class ChipPrepago{
   }
   
   
+  /**
+   * Metodo para realizar una recarga
+   * 
+   * @param pMonto cantidad a que se sumara al saldo actual
+   * @return mensaje de exito con nuevo saldo o de fallo
+   */
   public String recargar(int pMonto){
     if(this.isActivado == false){
       return "Chip no ha sido activado";
@@ -158,6 +209,11 @@ public class ChipPrepago{
   }
   
   
+  /**
+   * Metodo para sumar 100 al saldo, si este no tiene disponible
+   * 
+   * @return mensaje de exito o fallo
+   */
   public String salvame(){
     if(this.isActivado == false){
       return "Chip no ha sido activado";
@@ -176,6 +232,11 @@ public class ChipPrepago{
   }
   
   
+  /**
+   * Metodo para ver todos los movimientos del chip
+   * 
+   * @return Lista de mensajes, llamadas y navegaciones realizadas
+   */
   public String consultarHistorial(){
     String historialTxt = "";
     historialTxt += "LLAMADAS \n" + consultarLlamadas();
@@ -185,6 +246,11 @@ public class ChipPrepago{
   }
   
   
+  /**
+   * Metodo para ver todas las llamadas del chip
+   * 
+   * @return Lista de llamadas registradas o mensaje de error
+   */
   public String consultarLlamadas(){
     String llamadasTxt = "";
     if(this.historialLlamadas[0] != null){
@@ -204,6 +270,11 @@ public class ChipPrepago{
   }
   
   
+  /**
+   * Metodo para ver todas los mensajes del chip
+   * 
+   * @return Lista de mensajes registrados o mensaje de error
+   */
   public String consultarMensajes(){
     String mensajesTxt = "";
     if(this.historialMensajes[0] != null){
@@ -223,6 +294,11 @@ public class ChipPrepago{
   }
   
   
+  /**
+   * Metodo para ver todas las navegaciones del chip
+   * 
+   * @return Lista de navegaciones registradas o mensaje de error
+   */
   public String consultarNavegaciones(){
     String navegacionesTxt = "";
     if(this.historialNavegaciones[0] != null){
@@ -240,17 +316,33 @@ public class ChipPrepago{
   }
   
   
+  /**
+   * Metodo para ver saldo disponible
+   * 
+   * @return saldo disponible al momento
+   */
   public String consultarSaldo(){
     return String.valueOf(this.saldo);
   } 
   
   
+  /**
+   * Metodo para ver los movimientos realizados en el mes actual
+   * 
+   * @return Lista de llamdas y mensajes realizadas durante el mes actual
+   */
   public String verActividadesMesActual(){
     int mesActual = Calendar.getInstance().get(Calendar.MONTH)+1;
     return verLlamadasMes(mesActual)+verMensajesMes(mesActual);
   }
   
   
+  /**
+   * Metodo para ver los movimientos realizados para un numero de mes en especifico
+   * 
+   * @param pMes numero de mes a consultar
+   * @return Lista de llamdas y mensajes realizadas durante el mes ingresado o mensaje de error
+   */
   public String verActividadesNumMes(int pMes){
     if(pMes > 0 && pMes < 13){
       return verLlamadasMes(pMes)+verMensajesMes(pMes);
@@ -260,6 +352,11 @@ public class ChipPrepago{
   }
   
   
+  /**
+   * Metodo para ver los mensajes recibidos
+   * 
+   * @return Lista de mensajes recibidos o mensaje de error
+   */
   public String verMensajesRecibidos(){
     String mensajesTxt = "";
     if(this.historialMensajes[0] != null){
@@ -282,11 +379,21 @@ public class ChipPrepago{
   }
   
   
+  /**
+   * Metodo para ver la cantidad de chipsPrepago registrados
+   * 
+   * @return cantidad de chips registrados
+   */
   public static int verCantidadChipsPregago(){
     return cantidadChipPrepago;
   }
   
   
+  /**
+   * Metodo para ver los atributos de un chipPrepago
+   * 
+   * @return cadena de caracteres con informacion del chipPrepago
+   */
   public String toString(){
     String texto = "\n";
     texto+= "Número:\t"+this.numeroChip+"\n";
@@ -318,7 +425,7 @@ public class ChipPrepago{
   }
   
   
-    private boolean validarSaldo(int pSaldo){
+  private boolean validarSaldo(int pSaldo){
     if(this.saldo-pSaldo < 0){
      return false;
     }else{

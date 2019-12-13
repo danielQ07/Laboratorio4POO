@@ -1,8 +1,8 @@
 /**
- * Write a description of class Llamada here.
+ * Clase para crear objetos tipo Navegacion
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Kevin Robles, Daniel Quiros
+ * @version 1.0
  */
 package logicadenegocios;
 import java.util.Date;
@@ -16,10 +16,16 @@ public class Navegacion{
   private double kiloBytes;
   private Date fechaHora;
   
+  /**
+   *  Metodo constructor de objetos tipo Navegacion
+   * 
+   * @param pUrl direccion web de la pagina navegada
+   * 
+   */
   public Navegacion(String pUrl){
     url = pUrl;
-    double pKiloBytes = (1.0 + Math.random()*(8.0 - 1.0));
-    kiloBytes = pKiloBytes;
+    double pKiloBytes = (1.0 + Math.random()*(8.0 - 1.0)); 
+    kiloBytes = pKiloBytes;//Numero kylobites es numero aleatorio de 1 a 8 
     setFechaHora();
   }
   

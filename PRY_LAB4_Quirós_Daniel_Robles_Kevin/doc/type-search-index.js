@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"aplicacion","l":"AplChipPrepago"},{"p":"logicadenegocios","l":"ChipPrepago"},{"p":"logicadenegocios","l":"Llamada"},{"p":"logicadenegocios","l":"Mensaje"},{"p":"logicadenegocios","l":"Navegacion"}]
