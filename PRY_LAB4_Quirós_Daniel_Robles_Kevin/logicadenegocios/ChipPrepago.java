@@ -15,6 +15,7 @@ public class ChipPrepago{
   private static int cantidadChipPrepago = 0;
   private int indiceLlamadas = 0;
   private int indiceMensajes = 0;
+  private int indiceNavegaciones = 0;
   private int cantidadSalvame = 0;
   private Llamada[] historialLlamadas; 
   private Mensaje[] historialMensajes; 
@@ -37,6 +38,10 @@ public class ChipPrepago{
   
   public String getCodigoPais(){
     return this.codigoPais;
+  }
+  
+  public String getMegaBytesTxt(){
+    return String.valueOf(this.megaBytes);
   }
   
   public String activar(String pDueno, double pMegaBytes){
@@ -289,8 +294,24 @@ public class ChipPrepago{
     }
   }
   
-  public String navegar(){
-    return "";  
+  public String navegar(String pUrl){
+    String infoTxt="";
+    Navegacion nuevaNavegacion = new Navegacion(pUrl);
+    if(validarKiloBytes(nuevaNavegacion.getKiloBytes())){
+      double conversion = nuevaNavegacion.getKiloBytes() / 1000;
+      this.megaBytes -= conversion;
+      if(this.indiceNavegaciones+1 == 10){
+        this.indiceNavegaciones = 0;
+        this.historialNavegaciones[this.indiceNavegaciones] = nuevaNavegacion;
+        this.indiceNavegaciones += 1;
+      }else{
+        this.historialNavegaciones[this.indiceNavegaciones] = nuevaNavegacion;
+        this.indiceNavegaciones += 1;
+      }      
+      return (infoTxt = "Se ha realizado la búsqueda con éxito, sus megabytes disponibles son "+ this.getMegaBytesTxt());
+    }else{
+      return (infoTxt = "No posee megabytes para navegar");
+    } 
   }
   
   public int verCantidadChipsPregago(){
@@ -340,6 +361,15 @@ public class ChipPrepago{
   
   private boolean validarSaldo(int pSaldo){
     if(this.saldo-pSaldo < 0){
+     return false;
+    }else{
+      return true;
+    }
+  }
+  
+  private boolean validarKiloBytes(double pKiloBytes){
+    double conversionMegaBytes = pKiloBytes/1000;
+    if(this.megaBytes-conversionMegaBytes < 0){
      return false;
     }else{
       return true;

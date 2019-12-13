@@ -699,13 +699,30 @@
 											"height": 13,
 											"text": "-validarSaldo(pMonto: int): boolean",
 											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAFvAHAPPX50tvI=",
+											"_parent": {
+												"$ref": "AAAAAAFu9UZQUE37AMI="
+											},
+											"model": {
+												"$ref": "AAAAAAFvAHAOpX5xnNY="
+											},
+											"font": "Arial;13;0",
+											"left": 77,
+											"top": 557,
+											"width": 415,
+											"height": 13,
+											"text": "-validarKiloBytes(pKiloBytes double): boolean",
+											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 72,
 									"top": 222,
 									"width": 425,
-									"height": 338
+									"height": 353
 								},
 								{
 									"_type": "UMLReceptionCompartmentView",
@@ -745,7 +762,7 @@
 							"left": 72,
 							"top": 24,
 							"width": 425,
-							"height": 537,
+							"height": 566,
 							"nameCompartment": {
 								"$ref": "AAAAAAFu9UZQTk31Geg="
 							},
@@ -3425,6 +3442,35 @@
 									"_id": "AAAAAAFu9dOpqk91PCg=",
 									"_parent": {
 										"$ref": "AAAAAAFu9dMcdE9rEPw="
+									},
+									"type": "boolean",
+									"direction": "return"
+								}
+							]
+						},
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAFvAHAOpX5xnNY=",
+							"_parent": {
+								"$ref": "AAAAAAFu9UZQS03yWWM="
+							},
+							"name": "validarKiloBytes",
+							"visibility": "private",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAFvAHBlv36lPfU=",
+									"_parent": {
+										"$ref": "AAAAAAFvAHAOpX5xnNY="
+									},
+									"name": "pKiloBytes double",
+									"type": ""
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAFvAHBlwH6mW/A=",
+									"_parent": {
+										"$ref": "AAAAAAFvAHAOpX5xnNY="
 									},
 									"type": "boolean",
 									"direction": "return"
