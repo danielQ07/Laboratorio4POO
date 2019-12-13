@@ -45,6 +45,9 @@ public class ChipPrepago{
     return this.codigoPais;
   }
   
+  public String getMegaBytesTxt(){
+    return String.valueOf(this.megaBytes);
+  }
   
   public String activar(String pDueno, double pMegaBytes){
     if(this.isActivado==true){
@@ -274,9 +277,24 @@ public class ChipPrepago{
     }
   }
   
-  
-  public String navegar(){
-    return "";  
+  public String navegar(String pUrl){
+    String infoTxt="";
+    Navegacion nuevaNavegacion = new Navegacion(pUrl);
+    if(validarKiloBytes(nuevaNavegacion.getKiloBytes())){
+      double conversion = nuevaNavegacion.getKiloBytes() / 1000;
+      if(this.indiceNavegaciones+1 == 10){
+      this.megaBytes -= conversion;
+        this.historialNavegaciones[this.indiceNavegaciones] = nuevaNavegacion;
+        this.indiceNavegaciones = 0;
+      }else{
+        this.indiceNavegaciones += 1;
+    } 
+      return (infoTxt = "No posee megabytes para navegar");
+    }else{
+      return (infoTxt = "Se ha realizado la búsqueda con éxito, sus megabytes disponibles son "+ this.getMegaBytesTxt());
+      }      
+        this.indiceNavegaciones += 1;
+        this.historialNavegaciones[this.indiceNavegaciones] = nuevaNavegacion;
   }
   
   
@@ -339,6 +357,15 @@ public class ChipPrepago{
     }else{
       return true;
     }
+  }
+  
+  private boolean validarKiloBytes(double pKiloBytes){
+    double conversionMegaBytes = pKiloBytes/1000;
+    if(this.megaBytes-conversionMegaBytes < 0){
+     return false;
+    }else{
+    }
+      return true;
   }
   
   
