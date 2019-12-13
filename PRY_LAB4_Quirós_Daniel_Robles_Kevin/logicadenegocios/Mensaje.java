@@ -24,22 +24,22 @@ public class Mensaje{
     tipoMensaje = pTipoMensaje;
   }
   
+  
   public String getMensaje(){
     return mensaje;
   }
   
+  
   public String getDestinatario(){
     return numeroDestinatario;
   }
-    
-  public Date getFechaHora(){
-    return fechaHora;
-  }
   
-  public String getFechaHoraTxt(){
-    SimpleDateFormat mascara = new SimpleDateFormat("dd/MM/yy");
+  
+  public String getFechaHora(){
+    SimpleDateFormat mascara = new SimpleDateFormat("dd/MM/yy hh:mm:ss");
     return mascara.format(fechaHora);
   }
+  
   
   private void setFechaHora(){
     Calendar calendario;
@@ -47,8 +47,14 @@ public class Mensaje{
     fechaHora = calendario.getTime();
   }
   
+  
   public String getTipoMensaje(){
     return tipoMensaje;
+  }
+  
+  public int getNumMes(){
+    SimpleDateFormat mascara = new SimpleDateFormat("MM");
+    return Integer.parseInt(mascara.format(fechaHora));
   }
 }
 

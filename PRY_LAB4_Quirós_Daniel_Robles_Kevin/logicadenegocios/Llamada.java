@@ -23,15 +23,13 @@ public class Llamada{
     setFechaHora();
     tipoLlamada = pTipoLlamada;
   }
-   
-  public Date getFechaHora(){
-    return fechaHora;
-  }
   
-  public String getFechaHoraTxt(){
-    SimpleDateFormat mascara = new SimpleDateFormat("dd/MM/yy");
+  
+  public String getFechaHora(){
+    SimpleDateFormat mascara = new SimpleDateFormat("dd/MM/yy hh:mm:ss");
     return mascara.format(fechaHora);
   }
+  
   
   private void setFechaHora(){
     Calendar calendario;
@@ -39,15 +37,24 @@ public class Llamada{
     fechaHora = calendario.getTime();
   }
   
+  
   public String getDestinatario(){
     return numeroDestinatario;
   }
+  
   
   public int getMinutos(){
     return minutos;
   }
   
+  
   public String getTipoLlamada(){
     return tipoLlamada;
+  }
+  
+  
+  public int getNumMes(){
+    SimpleDateFormat mascara = new SimpleDateFormat("MM");
+    return Integer.parseInt(mascara.format(fechaHora));
   }
 }

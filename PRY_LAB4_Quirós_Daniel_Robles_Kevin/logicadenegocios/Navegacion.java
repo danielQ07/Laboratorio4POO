@@ -5,10 +5,10 @@
  * @version (a version number or a date)
  */
 package logicadenegocios;
-
 import java.util.Date;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
+import java.lang.Math;
 
 public class Navegacion{
 
@@ -18,19 +18,17 @@ public class Navegacion{
   
   public Navegacion(String pUrl){
     url = pUrl;
-    double pKiloBytes = (1.0 + Math.random()*(1.0 - 8.0));
+    double pKiloBytes = (1.0 + Math.random()*(8.0 - 1.0));
     kiloBytes = pKiloBytes;
     setFechaHora();
   }
-    
-  public Date getFechaHora(){
-    return fechaHora;
-  }
   
-  public String getFechaHoraTxt(){
-    SimpleDateFormat mascara = new SimpleDateFormat("dd/MM/yy");
+  
+  public String getFechaHora(){
+    SimpleDateFormat mascara = new SimpleDateFormat("dd/MM/yy hh:mm:ss");
     return mascara.format(fechaHora);
   }
+  
   
   private void setFechaHora(){
     Calendar calendario;
@@ -38,12 +36,20 @@ public class Navegacion{
     fechaHora = calendario.getTime();
   }
   
+  
   public String getUrl(){
     return url;
   }
   
+  
   public double getKiloBytes(){
     return kiloBytes;
+  }
+  
+  
+  public int getNumMes(){
+    SimpleDateFormat mascara = new SimpleDateFormat("MM");
+    return Integer.parseInt(mascara.format(fechaHora));
   }
 }
 
