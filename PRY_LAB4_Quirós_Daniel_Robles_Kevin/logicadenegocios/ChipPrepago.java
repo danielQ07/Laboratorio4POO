@@ -73,6 +73,50 @@ public class ChipPrepago{
   
   
   /**
+   * Metodo para revisar actividades de salida
+   * 
+   * @param pNumeroChip numero de Chip, para revisar actividades    
+   * @return llamadas y mensaje a este destinatario de entrada pNumeroChip
+   */
+  public String actividadDeSalida(String pNumeroChip){
+    String infoTxt = "";
+    infoTxt += "LLamadas: \n";
+    if(this.historialLlamadas[0] != null){
+      int contadorLlamadas = 0;
+      while(contadorLlamadas < 10 && this.historialLlamadas[contadorLlamadas] != null){
+        if(this.historialLlamadas[contadorLlamadas].getDestinatario() == pNumeroChip && this.historialLlamadas[contadorLlamadas].getTipoLlamada() == "Enviado"){
+          infoTxt += "Número de llamada:\t" + String.valueOf(contadorLlamadas+1) + "\n";
+          infoTxt += "Tipo de llamada:\t" + this.historialLlamadas[contadorLlamadas].getTipoLlamada() + "\n";
+          infoTxt += "Duración de llamada:\t" + this.historialLlamadas[contadorLlamadas].getMinutos() + "\n";
+          infoTxt += "Destinatario:\t" + this.historialLlamadas[contadorLlamadas].getDestinatario() + "\n";
+          infoTxt += "Fecha y Hora:\t" + this.historialLlamadas[contadorLlamadas].getFechaHora() + "\n\n";
+          contadorLlamadas += 1;
+        }
+      }
+      if(contadorLlamadas==0){
+        infoTxt += "No existen llamadas a este Chip \n\n";
+      }
+    }
+    if(this.historialMensajes[0] != null){
+      int contadorMensajes = 0;
+      while(contadorMensajes < 10 && this.historialMensajes[contadorMensajes] != null){
+        if(this.historialMensajes[contadorMensajes].getDestinatario() == pNumeroChip && this.historialMensajes[contadorMensajes].getTipoMensaje() == "Enviado"){
+          infoTxt += "Número de mensaje:\t" + String.valueOf(contadorMensajes+1) + "\n";
+          infoTxt += "Tipo de mensaje:\t" + this.historialMensajes[contadorMensajes].getTipoMensaje() + "\n";
+          infoTxt += "Destinatario:\t" + this.historialMensajes[contadorMensajes].getDestinatario() + "\n";
+          infoTxt += "Fecha y Hora:\t" + this.historialMensajes[contadorMensajes].getFechaHora() + "\n\n";
+          contadorMensajes += 1;
+        }
+      }
+      if(contadorMensajes==0){
+        infoTxt += "No existen mensajes a este Chip \n\n";
+      }
+    }
+    return infoTxt;
+  }
+  
+  
+  /**
    * Metodo para realizar una llamada
    * 
    * @param pMinutos numero de minutos de llamada, pChipDestinario chipPrepago al que se
