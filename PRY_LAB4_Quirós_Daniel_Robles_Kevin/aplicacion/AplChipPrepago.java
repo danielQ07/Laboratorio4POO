@@ -9,6 +9,7 @@ import logicadenegocios.ChipPrepago;
 
 public class AplChipPrepago{
   public static void main(String[] args){
+
     ChipPrepago chip1 = new ChipPrepago();
     ChipPrepago chip2 = new ChipPrepago("1");
     
