@@ -3727,7 +3727,8 @@
 									"_parent": {
 										"$ref": "AAAAAAFvAM1FdQbNffo="
 									},
-									"name": "pMes"
+									"name": "pMes",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -3784,7 +3785,8 @@
 									"_parent": {
 										"$ref": "AAAAAAFvAM4OuAtBdSg="
 									},
-									"name": "pCodigoPais"
+									"name": "pCodigoPais",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
