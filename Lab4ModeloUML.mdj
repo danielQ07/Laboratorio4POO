@@ -379,23 +379,6 @@
 										},
 										{
 											"_type": "UMLOperationView",
-											"_id": "AAAAAAFvAW0TcQc9Y/E=",
-											"_parent": {
-												"$ref": "AAAAAAFu9UZQUE37AMI="
-											},
-											"model": {
-												"$ref": "AAAAAAFvAW0Sbgc6qOM="
-											},
-											"font": "Arial;13;0",
-											"left": 77,
-											"top": 272,
-											"width": 415,
-											"height": 13,
-											"text": "+actividadDeSalida(pNumeroChip: String): String",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLOperationView",
 											"_id": "AAAAAAFu9YCceU7Wen4=",
 											"_parent": {
 												"$ref": "AAAAAAFu9UZQUE37AMI="
@@ -405,7 +388,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 77,
-											"top": 287,
+											"top": 272,
 											"width": 415,
 											"height": 13,
 											"text": "+llamar(pMinutos: int, pChipDestinatario: ChipPrepago): String",
@@ -422,7 +405,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 77,
-											"top": 302,
+											"top": 287,
 											"width": 415,
 											"height": 13,
 											"text": "+enviarSms(pMensaje String, pChipDestinatario: ChipPrepago): String",
@@ -439,7 +422,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 77,
-											"top": 317,
+											"top": 302,
 											"width": 415,
 											"height": 13,
 											"text": "+navegar(url: String): String",
@@ -456,7 +439,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 77,
-											"top": 332,
+											"top": 317,
 											"width": 415,
 											"height": 13,
 											"text": "+transferir(pMonto: int, pChipDestinatario: ChipPrepago): String",
@@ -473,7 +456,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 77,
-											"top": 347,
+											"top": 332,
 											"width": 415,
 											"height": 13,
 											"text": "+recargar(pMonto: int): String",
@@ -490,7 +473,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 77,
-											"top": 362,
+											"top": 347,
 											"width": 415,
 											"height": 13,
 											"text": "+salvame(): String",
@@ -507,7 +490,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 77,
-											"top": 377,
+											"top": 362,
 											"width": 415,
 											"height": 13,
 											"text": "+consultarHistorial(): String",
@@ -524,7 +507,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 77,
-											"top": 392,
+											"top": 377,
 											"width": 415,
 											"height": 13,
 											"text": "+consultarLlamadas(): String",
@@ -541,7 +524,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 77,
-											"top": 407,
+											"top": 392,
 											"width": 415,
 											"height": 13,
 											"text": "+consultarMensajes(): String",
@@ -558,7 +541,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 77,
-											"top": 422,
+											"top": 407,
 											"width": 415,
 											"height": 13,
 											"text": "+consultarNavegaciones(): String",
@@ -575,7 +558,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 77,
-											"top": 437,
+											"top": 422,
 											"width": 415,
 											"height": 13,
 											"text": "+consultarSaldo(): int",
@@ -592,7 +575,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 77,
-											"top": 452,
+											"top": 437,
 											"width": 415,
 											"height": 13,
 											"text": "+verActividadesMesActual(): String",
@@ -609,7 +592,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 77,
-											"top": 467,
+											"top": 452,
 											"width": 415,
 											"height": 13,
 											"text": "+verActividadesNumMes(int pMes): String",
@@ -626,10 +609,27 @@
 											},
 											"font": "Arial;13;0",
 											"left": 77,
-											"top": 482,
+											"top": 467,
 											"width": 415,
 											"height": 13,
 											"text": "+verMensajesRecibidos(): String",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAFvAW0TcQc9Y/E=",
+											"_parent": {
+												"$ref": "AAAAAAFu9UZQUE37AMI="
+											},
+											"model": {
+												"$ref": "AAAAAAFvAW0Sbgc6qOM="
+											},
+											"font": "Arial;13;0",
+											"left": 77,
+											"top": 482,
+											"width": 415,
+											"height": 13,
+											"text": "+actividadDeSalida(pNumeroChip: String): String",
 											"horizontalAlignment": 0
 										},
 										{
@@ -3109,34 +3109,6 @@
 						},
 						{
 							"_type": "UMLOperation",
-							"_id": "AAAAAAFvAW0Sbgc6qOM=",
-							"_parent": {
-								"$ref": "AAAAAAFu9UZQS03yWWM="
-							},
-							"name": "actividadDeSalida",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFvAW4k2AdurzM=",
-									"_parent": {
-										"$ref": "AAAAAAFvAW0Sbgc6qOM="
-									},
-									"type": "String",
-									"direction": "return"
-								},
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAFvAW8eSgeDMWk=",
-									"_parent": {
-										"$ref": "AAAAAAFvAW0Sbgc6qOM="
-									},
-									"name": "pNumeroChip",
-									"type": "String"
-								}
-							]
-						},
-						{
-							"_type": "UMLOperation",
 							"_id": "AAAAAAFu9YCcGU7T/fA=",
 							"_parent": {
 								"$ref": "AAAAAAFu9UZQS03yWWM="
@@ -3485,6 +3457,34 @@
 									},
 									"type": "String",
 									"direction": "return"
+								}
+							]
+						},
+						{
+							"_type": "UMLOperation",
+							"_id": "AAAAAAFvAW0Sbgc6qOM=",
+							"_parent": {
+								"$ref": "AAAAAAFu9UZQS03yWWM="
+							},
+							"name": "actividadDeSalida",
+							"parameters": [
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAFvAW4k2AdurzM=",
+									"_parent": {
+										"$ref": "AAAAAAFvAW0Sbgc6qOM="
+									},
+									"type": "String",
+									"direction": "return"
+								},
+								{
+									"_type": "UMLParameter",
+									"_id": "AAAAAAFvAW8eSgeDMWk=",
+									"_parent": {
+										"$ref": "AAAAAAFvAW0Sbgc6qOM="
+									},
+									"name": "pNumeroChip",
+									"type": "String"
 								}
 							]
 						},
